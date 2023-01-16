@@ -8,7 +8,7 @@
                 @include('partials.errors')
                 <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror">
                         @error('title')
@@ -17,7 +17,16 @@
                             </div> 
                         @enderror
                     </div>
-                    <div class="form-group py-3">
+                    <div class="form-group mb-3">
+                        <label for="type">Type</label>
+                        <select name="type_id" id="type" class="form-select">
+                            <option value="">No Type</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id)>{{ $type->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="image">Image</label>
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror">
                         @error('image')
