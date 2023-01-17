@@ -20,7 +20,7 @@
                         <select name="type_id" id="type" class="form-select">
                             <option value="">No Type</option>
                             @foreach ($types as $type)
-                                <option value="{{ $type->id }}" @selected($project->type?->id == $type->id)>{{ $type->title }}</option> 
+                                <option value="{{ $type->id }}" @selected(old($project->type?->id) == $type->id)>{{ $type->title }}</option> 
                             @endforeach
                         </select>
                     </div>
